@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+import sys
+
+file_path = sys.argv[1]
+
+# Open file in read mode using a context manager
+with open(file_path, 'r') as file:
+    # Iterate over each line in the file
+        for line in file:
+            # Strip the line of leading/trailing whitespace and split into tokens
+            tokens = line.strip().split("\n")
+
+            # Process each token in the line
+            for token in tokens:
+                # Skip empty tokens
+                if not token:
+                    continue
+                
+                # Convert token to an integer (assuming it's a valid number)
+                num = int(token)
+
+                # Factorize the number
+                for factor in range(2, num + 1):
+                    if num % factor == 0:
+                        quotient = num // factor
+                        print(f"{num}={quotient}*{factor}")
+                        break
