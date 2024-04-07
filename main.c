@@ -20,13 +20,12 @@ void _tokenizer(char *filename) {
 
 		for (i = 2; i <= mpz_get_ui(number) + 1; i++)
 		{
-			if (time(NULL) - current_time >= 5)
-				exit(1);
 			mpz_init_set_ui(modulus, i);
 			mpz_init_set_ui(divisor, i);
 			mpz_mod(modulus_result, number, modulus);
 			mpz_div(quotient, number, divisor);
-
+			if (time(NULL) - current_time >= 5)
+				exit(1);
 			if (mpz_cmp_ui(modulus_result, 0) == 0)
 			{
 				gmp_printf("%Zd=%Zd*%d\n", number, quotient, i);
