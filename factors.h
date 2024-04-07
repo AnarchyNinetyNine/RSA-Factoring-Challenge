@@ -6,6 +6,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <gmp.h>
 
 char *read_textfile(const char *filename, size_t letters);
 char **fill_array(char **arr, char *placeholder, size_t wc);
