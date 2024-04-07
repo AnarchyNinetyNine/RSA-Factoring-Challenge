@@ -1,27 +1,37 @@
 #!/usr/bin/python3
-import sys
+import sys, time
 
-file_path = sys.argv[1]
+def factorize():
+    start_time = time.time()
+    if len(sys.argv) != 2:
+            print("Usage: factors <file>")
+            exit()
 
-# Open file in read mode using a context manager
-with open(file_path, 'r') as file:
-    # Iterate over each line in the file
-        for line in file:
-            # Strip the line of leading/trailing whitespace and split into tokens
-            tokens = line.strip().split("\n")
+    file_path = sys.argv[1]
 
-            # Process each token in the line
-            for token in tokens:
-                # Skip empty tokens
-                if not token:
-                    continue
+    # Open file in read mode using a context manager
+    with open(file_path, 'r') as file:
+        # Iterate over each line in the file
+            for line in file:
+                # Strip the line of leading/trailing whitespace and split into tokens
+                tokens = line.strip().split("\n")
+
+                # Process each token in the line
+                for token in tokens:
+                    # Skip empty tokens
+                    if not token:
+                        continue
                 
-                # Convert token to an integer (assuming it's a valid number)
-                num = int(token)
-
-                # Factorize the number
-                for factor in range(2, num + 1):
-                    if num % factor == 0:
-                        quotient = num // factor
-                        print(f"{num}={quotient}*{factor}")
-                        break
+                    # Convert token to an integer (assuming it's a valid number)
+                    num = int(token)
+                    
+                    # Factorize the number
+                    for factor in range(2, num + 1):
+                        if time.time() - start_time > 5:
+                            exit()
+                        if num % factor == 0:
+                            quotient = num // factor
+                            print(f"{num}={quotient}*{factor}")
+                            break
+if __name__ == "__main__":
+    factorize()
