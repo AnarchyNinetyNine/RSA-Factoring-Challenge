@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-import sys, time
+import sys
 
 def factorize():
-    start_time = time.time()
     if len(sys.argv) != 2:
             print("Usage: factors <file>")
             exit()
@@ -27,8 +26,6 @@ def factorize():
                     
                     # Factorize the number
                     for factor in range(2, num + 1):
-                        if time.time() - start_time > 5:
-                            exit()
                         if num % factor == 0:
                             quotient = num // factor
                             print(f"{num}={quotient}*{factor}")
