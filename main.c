@@ -20,7 +20,7 @@ void _tokenizer(char *filename) {
 
 		for (i = 2; i <= mpz_get_ui(number) + 1; i++)
 		{
-			if (time(NULL) - current_time > 5)
+			if (time(NULL) - current_time >= 5)
 				exit(1);
 			mpz_init_set_ui(modulus, i);
 			mpz_init_set_ui(divisor, i);
