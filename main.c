@@ -6,6 +6,7 @@ void _tokenizer(char *filename) {
 	char **tokens = _strtok(string);
 	mpz_t number, modulus, modulus_result, divisor, quotient;
 	int i;
+	time_t current_time;
 
 	mpz_init(number);
 	mpz_init(divisor);
@@ -14,10 +15,13 @@ void _tokenizer(char *filename) {
 
 	while (*tokens)
 	{
+		current_time = time(NULL);
 		mpz_set_str(number, *tokens, 10);
 
 		for (i = 2; i <= mpz_get_ui(number) + 1; i++)
 		{
+			if (time(NULL) - current_time > 5)
+				exit(1);
 			mpz_init_set_ui(modulus, i);
 			mpz_init_set_ui(divisor, i);
 			mpz_mod(modulus_result, number, modulus);
